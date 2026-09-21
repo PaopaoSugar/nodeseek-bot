@@ -139,11 +139,13 @@ Full commands: [docs/deployment.md](docs/deployment.md).
 
 ## FAQ
 
-**Why is the latency "tens of seconds" instead of "under 30 seconds"?**
+**Roughly how much latency should I expect?**
 End-to-end latency = feed freshness + average polling wait (15 s) + matching
-(< 1 s) + delivery (1–2 s). Feed freshness is not ours to control: measured
-freshness is tens of seconds to a few minutes. We minimise the part we own; we
-cannot promise an absolute ceiling.
+(< 1 s) + delivery (1–2 s). Feed freshness is not ours to control: the best case
+we measured was a brand-new topic appearing in the feed 11.9 seconds after it was
+posted. So the best case is roughly **25-30 seconds** — the same order as the
+"30 seconds" target. Treat it as an observed floor, not a promise: rate-limit
+back-off, feed jitter and Telegram delivery all add to it.
 
 **Why NodeSeek only?**
 linux.do's RSS is behind a Cloudflare Managed Challenge. Four TLS fingerprints ×

@@ -1,0 +1,22 @@
+[Unit]
+Description=NodeSeek keyword monitor bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=nodeseek
+Group=nodeseek
+WorkingDirectory=/opt/nodeseek-bot
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/opt/nodeseek-bot/.venv/bin/nodeseek-bot --config /etc/nodeseek-bot/config.toml
+Restart=always
+RestartSec=10
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/nodeseek-bot
+
+[Install]
+WantedBy=multi-user.target

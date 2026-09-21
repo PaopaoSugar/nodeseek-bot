@@ -1,0 +1,47 @@
+# 复制为 config.toml 后填写。config.toml 已被 .gitignore 忽略，切勿提交。
+
+[telegram]
+# 从 @BotFather 申请
+bot_token = ""
+# 管理员 Telegram user id，可填多个。用 @userinfobot 可查到自己的 id
+admin_user_ids = []
+
+[poller]
+# 轮询间隔（秒）。NodeSeek 的 RSS 不做 CDN 缓存，每次请求都会打到源站，
+# 请勿设为低于 20 的值。更激进的频率会导致你的 IP 被限流。
+interval_seconds = 30
+request_timeout_seconds = 20
+# 连续失败时的退避上限
+max_backoff_seconds = 600
+# 单次拉取新增超过此条数即视为可能丢帖并告警（feeds 窗口只有 20 条）
+overflow_threshold = 15
+feed_url = "https://rss.nodeseek.com/"
+
+[notifier]
+# Telegram 全局上限约 30 条/秒，留出余量
+global_rate_per_second = 25
+max_attempts = 3
+# 同一用户在此窗口内的多条命中会被合并成一条消息
+coalesce_window_seconds = 20
+max_message_chars = 3500
+
+[limits]
+# 每人最多几个关键词
+max_rules_per_user = 3
+
+# 邀请制开关
+#   true  = 需要邀请码（默认）
+#   false = 开放注册，任何人发 /start 就能用，/invite 也会提示不需要邀请码
+invite_required = true
+
+# 邀请码形式（invite_required = true 时生效）：
+#   "one_time" = 每人最多同时持有 invite_quota_per_user 张一次性码
+#   "fixed"    = 每人一个固定邀请码，可反复使用，想收回就 ban 掉用的人
+invite_mode = "one_time"
+
+# 仅 one_time 模式下生效
+invite_quota_per_user = 3
+
+[storage]
+db_path = "data/bot.db"
+retention_days = 14

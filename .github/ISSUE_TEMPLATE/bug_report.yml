@@ -1,0 +1,24 @@
+name: Bug 反馈
+description: 报告一个问题
+labels: [bug]
+body:
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: 发生了什么
+      description: 请描述实际行为与预期行为
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: 日志
+      description: 请贴出相关日志（务必先删除 bot token）
+    validations:
+      required: false
+  - type: input
+    id: version
+    attributes:
+      label: 版本
+    validations:
+      required: true
